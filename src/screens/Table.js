@@ -13,8 +13,8 @@ export const Table1 = (props) => {
       applicationType: e.applicationType,
       applicationId: e.applicationId,
       actionType: e.actionType,
-      logInfo: e.logInfo,
-      cnenreationTimestamp: e.creationTimestamp,
+      logInfo: '',
+      creationTimestamp: e.creationTimestamp,
     }
 
   }) : ''
