@@ -1,4 +1,4 @@
-import { GET_USERS_SAGA, SET_USERS, GET_POST_COMPONENT_DATA } 
+import { GET_USERS_SAGA, SET_USERS,  } 
 from '../constants';
 
 export function setUsers(users) {
@@ -14,13 +14,6 @@ export function getUsersSaga() {
   };
 }
 
-export function getPostComponentData(title, body) {
-  return {
-    type: GET_POST_COMPONENT_DATA,
-    title,
-    body
-  };
-}
 export function setText(newText) {
   return {
     type: 'SET_NEW_TEXT',

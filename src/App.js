@@ -7,7 +7,6 @@ import { Route, Switch, } from 'react-router-dom';
 import store, { history } from './store';
 
 import Home from './screens/Home';
-//import PostComponent from './screens/PostComponent';
 
 import 'semantic-ui-css/semantic.min.css';
 import './App.css';

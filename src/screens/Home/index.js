@@ -1,12 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Table } from 'semantic-ui-react';
 import { getUsersSaga } from '../../actions';
-import Button from '@material-ui/core/Button';
-import styles from './styles';
-import { Link } from 'react-router-dom'
 import { Table1 } from '../Table';
-import MaterialTable from 'material-table';
 
 class Home extends Component {
   constructor() {
@@ -18,11 +13,14 @@ class Home extends Component {
 
   render() {
     const { users } = this.props;
+    const queryParams = new URLSearchParams(window.location.search)
+    const term = queryParams.get("term")
+  
     return (
       <div>
         {users.length > 0
           && (
-            <Table1 data={users} />
+            <Table1 queryParam={term} data={users} />
           )
         }
 
