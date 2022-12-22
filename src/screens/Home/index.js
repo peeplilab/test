@@ -4,9 +4,7 @@ import { getUsersSaga } from '../../actions';
 import { Table1 } from '../Table';
 
 class Home extends Component {
-  constructor() {
-    super();
-  }
+
   componentDidMount() {
     this.props.getUsersSaga();
   }
