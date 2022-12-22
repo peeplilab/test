@@ -23,7 +23,6 @@ class Home extends Component {
             <Table1 queryParam={term} data={users} />
           )
         }
-
       </div>
     );
   }
