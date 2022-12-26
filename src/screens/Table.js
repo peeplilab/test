@@ -7,10 +7,9 @@ import { ThemeProvider, createTheme } from '@mui/material';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+import Select from '@mui/material/Select';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-import MaterialUIPicker from './DatePicker';
 //import { handleClickFilter, setApplicationType,setActionType } from '../actions';
 
 export const Table1 = (props) => {
@@ -32,7 +31,7 @@ export const Table1 = (props) => {
       applicationType: applicationType,
       actionType: action
     };
-    let newArr = props.data.filter(obj => obj.applicationType == filter.applicationType && obj.actionType == filter.actionType)
+    let newArr = props.data.filter(obj => obj.applicationType === filter.applicationType && obj.actionType === filter.actionType)
     //console.log(newArr, 'gggg');
     setFilterPressedStatus(true)
     setFilteredArr(newArr);
