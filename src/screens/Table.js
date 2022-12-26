@@ -11,7 +11,7 @@ import Select from '@mui/material/Select';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 //import { handleClickFilter, setApplicationType,setActionType } from '../actions';
-
+import MaterialUIPicker from './DatePicker';
 export const Table1 = (props) => {
   const defaultMaterialTheme = createTheme();
   //const { tableData } = props;
@@ -31,8 +31,12 @@ export const Table1 = (props) => {
       applicationType: applicationType,
       actionType: action
     };
+    let fromDate = props.fromDate?props.fromDate: new Date();
+    let toDate = props.toDate?props.toDate: new Date();
+
     let newArr = props.data.filter(obj => obj.applicationType === filter.applicationType || obj.actionType === filter.actionType)
     //console.log(newArr, 'gggg');
+
     setFilterPressedStatus(true)
     setFilteredArr(newArr);
   };
@@ -148,10 +152,7 @@ export const Table1 = (props) => {
               return (
                 <div>
                   <Stack spacing={1} direction="row">
-
-                    {/* <MaterialUIPicker />
-                    <MaterialUIPicker /> */}
-
+                    <MaterialUIPicker />
                     <Button
                       variant="contained"
                       color="error"
@@ -189,7 +190,9 @@ export const Table1 = (props) => {
 
 
 const mapStateToProps = (state) => ({
-  tableData: state.usersReducer
+  tableData: state.usersReducer,
+  fromDate:state.usersReducer.fromDate,
+  toDate: state.usersReducer.fromDate
 })
 
 const mapDispatchToProps = dispatch => ({

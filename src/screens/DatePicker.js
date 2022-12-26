@@ -14,12 +14,15 @@ function MaterialUIPicker(props) {
     date
   );
 
-  const handleChange = (newValue) => {
+  const handleFromChange = (newValue) => {
     setValue(newValue);
-    console.log(newValue,'ffff');
     props.setFromDate(newValue);
+  };
+  const handleToChange = (newValue) => {
+    setValue(newValue);
     props.setToDate(newValue);
   };
+
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -28,7 +31,14 @@ function MaterialUIPicker(props) {
           label="Date desktop"
           inputFormat="MM/DD/YYYY"
           value={value}
-          onChange={handleChange}
+          onChange={handleFromChange}
+          renderInput={(params) => <TextField {...params} />}
+        />
+         <DesktopDatePicker
+          label="Date desktop"
+          inputFormat="MM/DD/YYYY"
+          value={value}
+          onChange={handleToChange}
           renderInput={(params) => <TextField {...params} />}
         />
        
@@ -38,7 +48,9 @@ function MaterialUIPicker(props) {
 }
 
 
-const mapStateToProps = (state) => ({})
+const mapStateToProps = (state) => ({
+    
+})
 
 const mapDispatchToProps = dispatch => ({
     setFromDate: (data) => dispatch(setFromDate(data)),

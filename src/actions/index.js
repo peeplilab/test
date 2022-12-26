@@ -20,16 +20,16 @@ export function setText(newText) {
     newText
   };
 }
-export function setFromDate(date) {
+export function setFromDate(data) {
   return {
     type: 'SET_FROM_DATE',
-    date
+    data
   }
 }
-export function setToDate(date) {
+export function setToDate(data) {
   return {
     type: 'SET_TO_DATE',
-    date
+    data
   }
 }
 export function handleClickFilter() {

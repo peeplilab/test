@@ -22,14 +22,17 @@ export default function setBrowserInfo(state = initialState, action) {
         newText: action.data
       }
     case 'SET_FROM_DATE':
+      console.log(action.data,'redddd');
+
       return {
         ...state,
-        fromDate: action.data
+        fromDate: action.data.$d
       }
     case 'SET_TO_DATE':
+    console.log(action.data.$d,'redddd');
       return {
         ...state,
-        toDate: action.data
+        toDate: action.data.$d
       }
       case 'SET_APP_TYPE':
         console.log(action.data,'ired');
