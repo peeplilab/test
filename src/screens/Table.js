@@ -31,7 +31,7 @@ export const Table1 = (props) => {
       applicationType: applicationType,
       actionType: action
     };
-    let newArr = props.data.filter(obj => obj.applicationType === filter.applicationType && obj.actionType === filter.actionType)
+    let newArr = props.data.filter(obj => obj.applicationType === filter.applicationType || obj.actionType === filter.actionType)
     //console.log(newArr, 'gggg');
     setFilterPressedStatus(true)
     setFilteredArr(newArr);
