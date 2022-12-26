@@ -20,3 +20,32 @@ export function setText(newText) {
     newText
   };
 }
+export function setFromDate(date) {
+  return {
+    type: 'SET_FROM_DATE',
+    date
+  }
+}
+export function setToDate(date) {
+  return {
+    type: 'SET_TO_DATE',
+    date
+  }
+}
+export function handleClickFilter() {
+  return {
+    type: 'GET_FILTERS_SAGA',
+  }
+}
+export function setApplicationType(data) {
+  return {
+    type: 'SET_APP_TYPE',
+    data
+  }
+}
+export function setActionType(data) {
+  return {
+    type: 'SET_ACTION_TYPE',
+    data
+  }
+}

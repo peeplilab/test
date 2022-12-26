@@ -19,3 +19,6 @@ It will automatically search and populate the table.
 ## Unit testing helper
 To run tests use: 
 npm run test
+
+## URL of deployed application
+https://main--keen-biscotti-b00ca8.netlify.app/

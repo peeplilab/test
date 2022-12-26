@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getUsersSaga } from '../../actions';
+import { getUsersSaga,  handleClickFilter } from '../../actions';
 import { Table1 } from '../Table';
 
 class Home extends Component {
@@ -32,6 +32,8 @@ class Home extends Component {
               applicationID={applicationID}
               queryParam={term}
               data={users}
+            //  handleClickFilter={handleClickFilter()}
+
             />
           )
         }
@@ -41,11 +43,12 @@ class Home extends Component {
 }
 
 const mapStateToProps = state => ({
-  users: state.usersReducer.users
+  users: state.usersReducer.users,
 });
 
 const mapDispatchToProps = dispatch => ({
-  getUsersSaga: () => dispatch(getUsersSaga())
+  getUsersSaga: () => dispatch(getUsersSaga()),
+ // handleClickFilter : dispatch(handleClickFilter()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

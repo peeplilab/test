@@ -8,8 +8,10 @@ import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
+import { setFromDate,setToDate } from '../actions';
+import { connect } from 'react-redux'
 
-export default function MaterialUIPicker() {
+function MaterialUIPicker(props) {
     const date = new Date();
 
   const [value, setValue] = React.useState(
@@ -18,6 +20,9 @@ export default function MaterialUIPicker() {
 
   const handleChange = (newValue) => {
     setValue(newValue);
+    console.log(newValue,'ffff');
+    props.setFromDate(newValue);
+    props.setToDate(newValue);
   };
 
   return (
@@ -35,3 +40,13 @@ export default function MaterialUIPicker() {
     </LocalizationProvider>
   );
 }
+
+
+const mapStateToProps = (state) => ({})
+
+const mapDispatchToProps = dispatch => ({
+    setFromDate: (data) => dispatch(setFromDate(data)),
+    setToDate: (data) => dispatch(setToDate(data))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(MaterialUIPicker)

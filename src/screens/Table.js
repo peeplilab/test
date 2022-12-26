@@ -11,18 +11,41 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import MaterialUIPicker from './DatePicker';
+//import { handleClickFilter, setApplicationType,setActionType } from '../actions';
 
 export const Table1 = (props) => {
   const defaultMaterialTheme = createTheme();
   //const { tableData } = props;
-  const [applicationType, setApplicationType] = React.useState('');
+  const [applicationType, setApplicationType1] = React.useState('');
   const [action, setAction] = React.useState('');
+  const [filteredArr, setFilteredArr] = React.useState([]);
+  const [filterPressedStatus, setFilterPressedStatus] = React.useState(false);
 
   const handleChange = (event) => {
-    setApplicationType(event.target.value);
+    setApplicationType1(event.target.value);
   };
   const handleChangeAction = (event) => {
     setAction(event.target.value);
+  };
+  const handleClickFilter = (event) => {
+    var filter = {
+      applicationType: applicationType,
+      actionType: action
+    };
+    let newArr = props.data.filter(obj => obj.applicationType == filter.applicationType && obj.actionType == filter.actionType)
+    //console.log(newArr, 'gggg');
+    setFilterPressedStatus(true)
+    setFilteredArr(newArr);
+  };
+  const handleClearFilter = (event) => {
+    // var filter = {
+    //   applicationType: applicationType,
+    //   actionType: action
+    // };
+    // let newArr = props.data.filter(obj => obj.applicationType == filter.applicationType && obj.actionType == filter.actionType)
+    //console.log(newArr, 'gggg');
+    setFilterPressedStatus(false)
+   // setFilteredArr(newArr);
   };
 
 
@@ -37,6 +60,15 @@ export const Table1 = (props) => {
     }
 
   }) : ''
+  // let filteredArrData = props.data.filter(function (item) {
+  //   for (var key in filter) {
+  //     if (item[key] === undefined || item[key] != filter[key])
+  //       return false;
+  //   }
+  //   return true;
+  // });
+
+
   return (
     <ThemeProvider theme={defaultMaterialTheme}>
       <MaterialTable
@@ -108,36 +140,44 @@ export const Table1 = (props) => {
             }
             , filterPlaceholder: 'Select Action'
           },
-          { title: 'Action Details', field: 'logInfo', filtering:false},
+          { title: 'Action Details', field: 'logInfo', filtering: false },
           {
-            title: 'Date : Time', 
-            field: 'creationTimestamp', 
+            title: 'Date : Time',
+            field: 'creationTimestamp',
             type: 'datetime',
             filterComponent: props => {
               return (
                 <div>
-                <Stack spacing={1} direction="row">
+                  <Stack spacing={1} direction="row">
 
-                  <MaterialUIPicker />
-                  <MaterialUIPicker />
-                 
+                    {/* <MaterialUIPicker />
+                    <MaterialUIPicker /> */}
+
                     <Button
                       variant="contained"
+                      color="error"
                       onClick={() => {
-                        alert('clicked');
+                        handleClearFilter();
+                      }}
+
+                    >Reset
+                    </Button>
+                    <Button
+                      variant="contained"
+                      color="success"
+                      onClick={() => {
+                        handleClickFilter();
                       }}
 
                     >Filter
                     </Button>
                   </Stack>
                 </div>
-
               )
             }
           },
-
         ]}
-        data={dataToMap}
+        data={filterPressedStatus ? filteredArr : dataToMap}
         options={{
           filtering: true,
           pageSize: 10,
@@ -145,7 +185,6 @@ export const Table1 = (props) => {
         }}
       />
     </ThemeProvider>
-
   )
 }
 
@@ -154,6 +193,8 @@ const mapStateToProps = (state) => ({
   tableData: state.usersReducer
 })
 
-const mapDispatchToProps = {}
+const mapDispatchToProps = dispatch => ({
+
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table1)
